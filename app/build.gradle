@@ -23,13 +23,27 @@ android {
             applicationIdSuffix '.debug'
             testCoverageEnabled true
             debuggable true
+
+            buildConfigField 'String', 'BASE_URL', "\"https://gateway.marvel.com/\""
+            buildConfigField 'String', 'PUBLIC_API_KEY', "\"45b2c9deb25670f8cb851a93a8f36c68\""
+            buildConfigField 'String', 'PRIVATE_API_KEY', "\"e58879c7ade09eacb2c0bdef4cbc202b476ee51e\""
         }
 
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'BASE_URL', "\"https://gateway.marvel.com/\""
+            buildConfigField 'String', 'PUBLIC_API_KEY', "\"45b2c9deb25670f8cb851a93a8f36c68\""
+            buildConfigField 'String', 'PRIVATE_API_KEY', "\"e58879c7ade09eacb2c0bdef4cbc202b476ee51e\""
         }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 
     testOptions {
