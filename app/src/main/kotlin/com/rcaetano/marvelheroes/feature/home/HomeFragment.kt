@@ -41,7 +41,9 @@ class HomeFragment : Fragment() {
             adapter.showLoadMore = shouldLoadMore
         }
 
-        viewModel.fetchCharacters()
+        if (viewModel.characterList.value.isNullOrEmpty()) {
+            viewModel.fetchCharacters()
+        }
     }
 
     private fun setupViews() {

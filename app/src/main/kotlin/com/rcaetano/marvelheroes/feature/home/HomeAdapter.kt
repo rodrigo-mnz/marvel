@@ -1,6 +1,5 @@
 package com.rcaetano.marvelheroes.feature.home
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -89,7 +88,6 @@ sealed class ProposalHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(character: Character) {
             this.character = character
 
-            Log.i("TAG", buildThumbnailUri(character))
             Picasso.get().load(buildThumbnailUri(character))
                 .placeholder(R.drawable.portrait_thumb_placeholder)
                 .into(view.img_character)
