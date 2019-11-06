@@ -18,6 +18,7 @@ ext.versions = [
         hawk            : '2.0.1',
         canarinho       : '2.0.1',
         sonar           : '2.8',
+        picasso         : '2.71828',
 
         // Testing
         junit           : '4.12',

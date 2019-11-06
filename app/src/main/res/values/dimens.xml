@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Material Design default margins-->
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="big_margin">24dp</dimen>
+    <dimen name="bigger_margin">32dp</dimen>
+
+    <!--Material Design alternatives margins, should be applied to smaller components, such as iconography and typography-->
+    <dimen name="small_alt_margin">4dp</dimen>
+    <dimen name="default_alt_margin">12dp</dimen>
+    <dimen name="big_alt_margin">20dp</dimen>
+
+</resources>

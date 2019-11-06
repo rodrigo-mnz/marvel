@@ -1,5 +1,9 @@
 package com.rcaetano.marvelheroes
 
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -19,3 +23,7 @@ inline fun <T : Any> apiCall(call: () -> T) =
     } catch (e: Exception) {
         Response.Error(e)
     }
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
+    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+}

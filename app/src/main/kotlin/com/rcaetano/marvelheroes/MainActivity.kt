@@ -18,7 +18,5 @@ class MainActivity : AppCompatActivity() {
                 HomeFragment::class.java.simpleName
             )
             .commit()
-
-
     }
 }

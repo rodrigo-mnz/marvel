@@ -8,6 +8,5 @@ sealed class Response<out T : Any> {
 enum class ScreenState {
     SUCCESS,
     LOADING,
-    UNAUTHORIZED,
     ERROR
 }

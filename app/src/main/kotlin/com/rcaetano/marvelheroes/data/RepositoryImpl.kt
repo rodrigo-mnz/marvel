@@ -10,12 +10,13 @@ class RepositoryImpl(
     private val apiService: ApiService
 ) : Repository {
 
-    override suspend fun listCharacters() =
+    override suspend fun listCharacters(offset: Int) =
         withContext(Dispatchers.IO) {
             val timestamp = System.currentTimeMillis().toString()
             apiService.listCharacters(
                 buildHash(timestamp),
-                timestamp
+                timestamp,
+                offset
             )
         }
 
