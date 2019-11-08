@@ -13,6 +13,7 @@ import com.rcaetano.marvelheroes.R
 import com.rcaetano.marvelheroes.data.model.Character
 import com.rcaetano.marvelheroes.data.model.ScreenState.*
 import com.rcaetano.marvelheroes.feature.common.CharacterAdapter
+import com.rcaetano.marvelheroes.feature.detail.DetailFragment
 import com.rcaetano.marvelheroes.hideKeyboard
 import com.rcaetano.marvelheroes.showToast
 import com.rcaetano.marvelheroes.subscribe
@@ -90,7 +91,20 @@ class SearchFragment : Fragment() {
     }
 
     private fun onItemClick(character: Character, imageView: ImageView) {
+        val detailFragment = DetailFragment.newInstance(character)
 
+        fragmentManager?.apply {
+            beginTransaction()
+                .setReorderingAllowed(true)
+                .addSharedElement(imageView, "CharacterImage")
+                .replace(
+                    R.id.fragment_container,
+                    detailFragment,
+                    DetailFragment::class.java.simpleName
+                )
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     private fun loadNextPage() {

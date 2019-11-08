@@ -13,10 +13,10 @@ import androidx.transition.*
 import com.rcaetano.marvelheroes.R
 import com.rcaetano.marvelheroes.data.model.Character
 import com.rcaetano.marvelheroes.data.model.Item
+import com.rcaetano.marvelheroes.feature.favourite.FavouriteHelper
 import com.rcaetano.marvelheroes.inflate
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailFragment : Fragment() {
 
@@ -44,8 +44,6 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private val viewModel by viewModel<DetailViewModel>()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,6 +59,28 @@ class DetailFragment : Fragment() {
 
         character?.let {
             bindCharacter(character)
+            setupFavourite(character, view)
+        }
+    }
+
+    private fun setupFavourite(
+        character: Character,
+        view: View
+    ) {
+        if (FavouriteHelper.isCharacterFavourite(character, context)) {
+            img_favourite.setImageResource(R.drawable.ic_favorite_full)
+        } else {
+            img_favourite.setImageResource(R.drawable.ic_favorite_outline)
+        }
+
+        img_favourite.setOnClickListener {
+            if (FavouriteHelper.isCharacterFavourite(character, view.context)) {
+                FavouriteHelper.removeFavouriteCharacter(character, view.context)
+                img_favourite.setImageResource(R.drawable.ic_favorite_outline)
+            } else {
+                FavouriteHelper.favouriteCharacter(character, view.context)
+                img_favourite.setImageResource(R.drawable.ic_favorite_full)
+            }
         }
     }
 

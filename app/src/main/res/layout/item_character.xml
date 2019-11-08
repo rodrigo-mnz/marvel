@@ -24,5 +24,16 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="CHARACTER" />
 
+    <ImageView
+        android:id="@+id/img_favourite"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/favourite_background"
+        android:contentDescription="@string/btn_favourite"
+        android:padding="6dp"
+        android:src="@drawable/ic_favorite_outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

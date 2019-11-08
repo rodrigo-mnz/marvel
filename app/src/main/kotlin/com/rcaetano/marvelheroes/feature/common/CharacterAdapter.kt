@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.rcaetano.marvelheroes.R
 import com.rcaetano.marvelheroes.data.model.Character
+import com.rcaetano.marvelheroes.feature.favourite.FavouriteHelper
 import com.rcaetano.marvelheroes.inflate
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_character.view.*
@@ -92,6 +93,22 @@ sealed class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
                 .into(view.img_character)
 
             view.txt_name.text = character.name
+
+            if (FavouriteHelper.isCharacterFavourite(character, view.context)) {
+                view.img_favourite.setImageResource(R.drawable.ic_favorite_full)
+            } else {
+                view.img_favourite.setImageResource(R.drawable.ic_favorite_outline)
+            }
+
+            view.img_favourite.setOnClickListener {
+                if (FavouriteHelper.isCharacterFavourite(character, view.context)) {
+                    FavouriteHelper.removeFavouriteCharacter(character, view.context)
+                    view.img_favourite.setImageResource(R.drawable.ic_favorite_outline)
+                } else {
+                    FavouriteHelper.favouriteCharacter(character, view.context)
+                    view.img_favourite.setImageResource(R.drawable.ic_favorite_full)
+                }
+            }
         }
 
         private fun buildThumbnailUri(character: Character) =

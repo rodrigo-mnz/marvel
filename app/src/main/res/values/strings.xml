@@ -7,4 +7,5 @@
     <string name="detail_events">Events</string>
     <string name="detail_stories">Stories</string>
     <string name="detail_series">Series</string>
+    <string name="btn_favourite">Favourite</string>
 </resources>

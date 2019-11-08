@@ -82,7 +82,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun onItemClick(character: Character, imageView: ImageView) {
-
         val detailFragment = DetailFragment.newInstance(character)
 
         fragmentManager?.apply {
