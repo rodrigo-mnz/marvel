@@ -14,4 +14,14 @@ interface ApiService {
         @Query("offset") offset: Int,
         @Query("limit") limit: Int = 20
     ): CharacterListResponse
+
+
+    @GET("/v1/public/characters?apikey=${BuildConfig.PUBLIC_API_KEY}")
+    suspend fun searchCharacterByName(
+        @Query("hash") hash: String,
+        @Query("ts") timestamp: String,
+        @Query("offset") offset: Int,
+        @Query("nameStartsWith") nameStartsWith: String,
+        @Query("limit") limit: Int = 20
+    ): CharacterListResponse
 }

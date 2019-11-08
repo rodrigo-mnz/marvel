@@ -1,4 +1,4 @@
-package com.rcaetano.marvelheroes.feature.home
+package com.rcaetano.marvelheroes.feature.common
 
 import android.view.View
 import android.view.ViewGroup
@@ -12,23 +12,25 @@ import kotlinx.android.synthetic.main.item_character_home.view.*
 private const val ITEM_VIEW_TYPE = 0
 private const val LOADING_VIEW_TYPE = 1
 
-class ProposalListAdapter(
+class CharacterAdapter(
     private val loadNextPage: () -> Unit
 ) :
-    RecyclerView.Adapter<ProposalHolder>() {
+    RecyclerView.Adapter<ItemHolder>() {
 
     private var list: List<Character> = emptyList()
     var showLoadMore = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         when (viewType) {
-            ITEM_VIEW_TYPE -> ProposalHolder.ProposalItem(
+            ITEM_VIEW_TYPE -> ItemHolder.CharacterItem(
                 parent.inflate(R.layout.item_character_home)
             )
 
-            LOADING_VIEW_TYPE -> ProposalHolder.LoadingItem(parent.inflate(R.layout.item_loading))
+            LOADING_VIEW_TYPE -> ItemHolder.LoadingItem(
+                parent.inflate(R.layout.item_loading)
+            )
 
-            else -> ProposalHolder.ProposalItem(
+            else -> ItemHolder.CharacterItem(
                 parent.inflate(R.layout.item_character_home)
             )
         }
@@ -40,10 +42,10 @@ class ProposalListAdapter(
             list.size
         }
 
-    override fun onBindViewHolder(holder: ProposalHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         when (holder) {
-            is ProposalHolder.ProposalItem -> holder.bind(list[position])
-            is ProposalHolder.LoadingItem -> loadNextPage()
+            is ItemHolder.CharacterItem -> holder.bind(list[position])
+            is ItemHolder.LoadingItem -> loadNextPage()
         }
     }
 
@@ -67,11 +69,11 @@ class ProposalListAdapter(
     fun isLoadMore(position: Int) = ((position == (itemCount - 1)) && showLoadMore)
 }
 
-sealed class ProposalHolder(view: View) : RecyclerView.ViewHolder(view) {
+sealed class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    class ProposalItem(
+    class CharacterItem(
         private val view: View
-    ) : ProposalHolder(view), View.OnClickListener {
+    ) : ItemHolder(view), View.OnClickListener {
 
         private var character: Character? = null
 
@@ -99,5 +101,5 @@ sealed class ProposalHolder(view: View) : RecyclerView.ViewHolder(view) {
             "${character.thumbnail.path}/portrait_xlarge.${character.thumbnail.extension}"
     }
 
-    class LoadingItem(view: View) : ProposalHolder(view)
+    class LoadingItem(view: View) : ItemHolder(view)
 }

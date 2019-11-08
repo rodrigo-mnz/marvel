@@ -20,6 +20,17 @@ class RepositoryImpl(
             )
         }
 
+    override suspend fun searchCharacterByName(offset: Int, name: String) =
+        withContext(Dispatchers.IO) {
+            val timestamp = System.currentTimeMillis().toString()
+            apiService.searchCharacterByName(
+                buildHash(timestamp),
+                timestamp,
+                offset,
+                name
+            )
+        }
+
     private fun buildHash(timestamp: String): String {
         try {
             val combination = timestamp + BuildConfig.PRIVATE_API_KEY + BuildConfig.PUBLIC_API_KEY

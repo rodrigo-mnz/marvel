@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rcaetano.marvelheroes.R
+import com.rcaetano.marvelheroes.data.model.ScreenState
+import com.rcaetano.marvelheroes.feature.common.CharacterAdapter
+import com.rcaetano.marvelheroes.showToast
 import com.rcaetano.marvelheroes.subscribe
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -14,7 +17,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     private val viewModel by viewModel<HomeViewModel>()
-    private val adapter = ProposalListAdapter(::loadNextPage)
+    private val adapter = CharacterAdapter(::loadNextPage)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +35,23 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupLiveData() {
+        viewModel.screenState.subscribe(this) { screenState ->
+            when (screenState) {
+                ScreenState.SUCCESS -> {
+                    progress_bar.visibility = View.GONE
+                    recycler_view.visibility = View.VISIBLE
+                }
+                ScreenState.LOADING -> {
+                    progress_bar.visibility = View.VISIBLE
+                    recycler_view.visibility = View.INVISIBLE
+                }
+                ScreenState.ERROR -> {
+                    progress_bar.visibility = View.GONE
+                    showToast(R.string.unknown_error)
+                }
+            }
+        }
+
         viewModel.characterList.subscribe(this) { characterList ->
             adapter.setData(characterList)
             adapter.notifyDataSetChanged()
