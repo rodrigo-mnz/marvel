@@ -42,11 +42,11 @@ class HomeFragment : Fragment() {
             when (screenState) {
                 ScreenState.SUCCESS -> {
                     progress_bar.visibility = View.GONE
-                    recycler_view.visibility = View.VISIBLE
+                    recycler_view_home.visibility = View.VISIBLE
                 }
                 ScreenState.LOADING -> {
                     progress_bar.visibility = View.VISIBLE
-                    recycler_view.visibility = View.INVISIBLE
+                    recycler_view_home.visibility = View.INVISIBLE
                 }
                 ScreenState.ERROR -> {
                     progress_bar.visibility = View.GONE
@@ -71,9 +71,9 @@ class HomeFragment : Fragment() {
 
     private fun setupViews() {
         val manager = GridLayoutManager(context, 4)
-        recycler_view.layoutManager = manager
-        recycler_view.adapter = adapter
-        recycler_view.setHasFixedSize(true)
+        recycler_view_home.layoutManager = manager
+        recycler_view_home.adapter = adapter
+        recycler_view_home.setHasFixedSize(true)
 
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int) =

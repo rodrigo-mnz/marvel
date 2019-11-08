@@ -15,7 +15,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'com.rcaetano.marvelheroes.CustomJUnitRunner'
     }
 
     buildTypes {
@@ -105,7 +105,4 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$versions.espresso"
     androidTestImplementation "com.squareup.okhttp3:mockwebserver:$versions.okhttp3"
     androidTestImplementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
-    androidTestImplementation("com.jayway.jsonpath:json-path-assert:$versions.json_assert") {
-        exclude group: "org.ow2.asm"
-    }
 }

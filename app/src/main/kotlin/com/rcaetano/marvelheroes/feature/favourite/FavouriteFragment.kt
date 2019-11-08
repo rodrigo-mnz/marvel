@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.rcaetano.marvelheroes.R
 import com.rcaetano.marvelheroes.data.model.Character
 import com.rcaetano.marvelheroes.feature.detail.DetailFragment
+import kotlinx.android.synthetic.main.fragment_favourite.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class FavouriteFragment : Fragment() {
