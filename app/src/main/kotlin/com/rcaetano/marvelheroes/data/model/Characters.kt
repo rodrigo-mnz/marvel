@@ -1,6 +1,8 @@
 package com.rcaetano.marvelheroes.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class CharacterListResponse(
     @SerializedName("attributionHTML") val attributionHTML: String,
@@ -20,6 +22,7 @@ data class Data(
     @SerializedName("total") val total: Int
 )
 
+@Parcelize
 data class Character(
     @SerializedName("comics") val comics: Comics,
     @SerializedName("description") val description: String,
@@ -32,48 +35,55 @@ data class Character(
     @SerializedName("stories") val stories: Stories,
     @SerializedName("thumbnail") val thumbnail: Thumbnail,
     @SerializedName("urls") val urls: List<Url>
-)
+) : Parcelable
 
+@Parcelize
 data class Comics(
     @SerializedName("available") val available: Int,
     @SerializedName("collectionURI") val collectionURI: String,
     @SerializedName("items") val items: List<Item>,
     @SerializedName("returned") val returned: Int
-)
+) : Parcelable
 
+@Parcelize
 data class Events(
     @SerializedName("available") val available: Int,
     @SerializedName("collectionURI") val collectionURI: String,
-    @SerializedName("items") val items: List<Any>,
+    @SerializedName("items") val items: List<Item>,
     @SerializedName("returned") val returned: Int
-)
+) : Parcelable
 
+@Parcelize
 data class Series(
     @SerializedName("available") val available: Int,
     @SerializedName("collectionURI") val collectionURI: String,
     @SerializedName("items") val items: List<Item>,
     @SerializedName("returned") val returned: Int
-)
+) : Parcelable
 
+@Parcelize
 data class Stories(
     @SerializedName("available") val available: Int,
     @SerializedName("collectionURI") val collectionURI: String,
     @SerializedName("items") val items: List<Item>,
     @SerializedName("returned") val returned: Int
-)
+) : Parcelable
 
+@Parcelize
 data class Item(
     @SerializedName("name") val name: String,
     @SerializedName("resourceURI") val resourceURI: String,
     @SerializedName("type") val type: String?
-)
+) : Parcelable
 
+@Parcelize
 data class Thumbnail(
     @SerializedName("extension") val extension: String,
     @SerializedName("path") val path: String
-)
+) : Parcelable
 
+@Parcelize
 data class Url(
     @SerializedName("type") val type: String,
     @SerializedName("url") val url: String
-)
+) : Parcelable

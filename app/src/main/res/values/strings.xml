@@ -2,4 +2,9 @@
     <string name="app_name">MarvelHeroes</string>
     <string name="search_hint">Character name</string>
     <string name="unknown_error">Ops… Something went wrong</string>
+    <string name="character_image_content_description">Character image</string>
+    <string name="detail_comics">Comics</string>
+    <string name="detail_events">Events</string>
+    <string name="detail_stories">Stories</string>
+    <string name="detail_series">Series</string>
 </resources>

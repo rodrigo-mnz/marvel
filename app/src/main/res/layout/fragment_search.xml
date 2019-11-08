@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:listitem="@layout/item_character_home">
+    tools:listitem="@layout/item_character">
 
     <EditText
         android:id="@+id/search_view"

@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rcaetano.marvelheroes.R
+import com.rcaetano.marvelheroes.data.model.Character
 import com.rcaetano.marvelheroes.data.model.ScreenState.*
 import com.rcaetano.marvelheroes.feature.common.CharacterAdapter
 import com.rcaetano.marvelheroes.hideKeyboard
@@ -20,7 +22,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class SearchFragment : Fragment() {
 
     private val viewModel by viewModel<SearchViewModel>()
-    private val adapter = CharacterAdapter(::loadNextPage)
+    private val adapter = CharacterAdapter(::loadNextPage, ::onItemClick)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,6 +87,10 @@ class SearchFragment : Fragment() {
 
             return@setOnKeyListener false
         }
+    }
+
+    private fun onItemClick(character: Character, imageView: ImageView) {
+
     }
 
     private fun loadNextPage() {

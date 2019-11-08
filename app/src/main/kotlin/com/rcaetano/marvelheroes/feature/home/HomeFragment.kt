@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rcaetano.marvelheroes.R
+import com.rcaetano.marvelheroes.data.model.Character
 import com.rcaetano.marvelheroes.data.model.ScreenState
 import com.rcaetano.marvelheroes.feature.common.CharacterAdapter
+import com.rcaetano.marvelheroes.feature.detail.DetailFragment
 import com.rcaetano.marvelheroes.showToast
 import com.rcaetano.marvelheroes.subscribe
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -17,7 +20,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     private val viewModel by viewModel<HomeViewModel>()
-    private val adapter = CharacterAdapter(::loadNextPage)
+    private val adapter = CharacterAdapter(::loadNextPage, ::onItemClick)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,6 +78,24 @@ class HomeFragment : Fragment() {
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int) =
                 if (adapter.isLoadMore(position)) 4 else 1
+        }
+    }
+
+    private fun onItemClick(character: Character, imageView: ImageView) {
+
+        val detailFragment = DetailFragment.newInstance(character)
+
+        fragmentManager?.apply {
+            beginTransaction()
+                .setReorderingAllowed(true)
+                .addSharedElement(imageView, "CharacterImage")
+                .replace(
+                    R.id.fragment_container,
+                    detailFragment,
+                    DetailFragment::class.java.simpleName
+                )
+                .addToBackStack(null)
+                .commit()
         }
     }
 
